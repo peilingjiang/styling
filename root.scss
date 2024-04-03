@@ -1,4 +1,4 @@
-// turns rem to px
+// rem to px
 @function px($rem) {
   @return calc($rem / 16);
 }

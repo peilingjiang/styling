@@ -1,6 +1,6 @@
 {
   "name": "@goodjpl/styling",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Handy shortcuts for styling",
   "main": "root.scss",
   "style": "root.scss",
@@ -18,6 +18,6 @@
     "format": "prettier --write \"**/*.scss\""
   },
   "files": [
-		"root.scss"
-	]
+    "root.scss"
+  ]
 }

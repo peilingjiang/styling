@@ -1,0 +1,19 @@
+{
+  "name": "@goodjpl/styling",
+  "version": "1.0.0",
+  "description": "Handy shortcuts for styling",
+  "main": "root.scss",
+  "style": "root.scss",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5"
+  },
+  "lint-staged": {
+    "*.{scss,md}": "prettier --write"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}

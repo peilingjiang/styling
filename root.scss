@@ -1,0 +1,194 @@
+// turns rem to px
+@function px($rem) {
+  @return calc($rem / 16);
+}
+
+/* ---------------------------------- color --------------------------------- */
+
+$black: #111;
+$grey-black: #333;
+$grey-dim: #666;
+$grey: #999;
+$grey-mid: #bbb;
+$grey-light: #d0d0d0;
+$light: #ececec;
+$off-white: #f7f7f7;
+$white: #fff;
+
+$red: #d24545;
+$orange: #ee6e0e;
+$yellow: #ffb84c;
+$pink: #ff06b7;
+$purple: #57068c;
+$green: #13a600;
+$cine: #00aeaa;
+$blue: #008be8;
+
+$shadow-grey: #88a5bf;
+
+// opacity
+$opacity: 0.9;
+$opacity-h: 0.75;
+$opacity-xh: 0.5;
+$opacity-xxh: 0.25;
+$opacity-xxx-h: 0.05;
+
+// blur
+$blur: px(3rem);
+$blur-h: px(5rem);
+$blur-xh: px(7rem);
+
+/* --------------------------------- layout --------------------------------- */
+
+$padding-xxx-s: 0.125rem;
+$padding-xxs: 0.25rem;
+$padding-xs: 0.5rem;
+$padding-s: 0.75rem;
+$padding: 1rem;
+$padding-l: 2rem;
+$padding-xl: 3rem;
+$padding-xxl: 4rem;
+$padding-xxx-l: 5rem;
+
+$rad-xs: 0.125rem;
+$rad-s: 0.25rem;
+$rad: 0.375rem;
+$rad-l: 0.5rem;
+$rad-xl: 1rem;
+
+/* ------------------------------- transition ------------------------------- */
+
+$trans-f: 100ms;
+$trans: 300ms;
+$trans-s: 700ms;
+$trans-xs: 1200ms;
+$trans-xxs: 3000ms;
+
+/* ---------------------------------- font ---------------------------------- */
+
+$fs-xxs: 0.5rem;
+$fs-xs: 0.625rem;
+$fs-s: 0.875rem;
+$fs: 1rem;
+$fs-l: 1.25rem;
+$fs-xl: 2rem;
+$fs-xxl: 3rem;
+
+$fw-light: 300;
+$fw: 400;
+$fw-mid: 500;
+$fw-bold: 700;
+
+// line-height
+$lh-s: 1.3;
+$lh: 1.5;
+$lh-l: 2;
+
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --black: #{$black};
+  --grey-black: #{$grey-black};
+  --grey-dim: #{$grey-dim};
+  --grey: #{$grey};
+  --grey-mid: #{$grey-mid};
+  --grey-light: #{$grey-light};
+  --light: #{$light};
+  --off-white: #{$off-white};
+  --white: #{$white};
+
+  --red: #{$red};
+  --orange: #{$orange};
+  --yellow: #{$yellow};
+  --pink: #{$pink};
+  --purple: #{$purple};
+  --green: #{$green};
+  --cine: #{$cine};
+  --blue: #{$blue};
+
+  --shadow-grey: #{$shadow-grey};
+
+  --opacity: #{$opacity};
+  --opacity-h: #{$opacity-h};
+  --opacity-xh: #{$opacity-xh};
+  --opacity-xxh: #{$opacity-xxh};
+  --opacity-xxx-h: #{$opacity-xxx-h};
+
+  --blur: #{$blur};
+  --blur-h: #{$blur-h};
+  --blur-xh: #{$blur-xh};
+
+  --padding-xxx-s: #{$padding-xxx-s};
+  --padding-xxs: #{$padding-xxs};
+  --padding-xs: #{$padding-xs};
+  --padding-s: #{$padding-s};
+  --padding: #{$padding};
+  --padding-l: #{$padding-l};
+  --padding-xl: #{$padding-xl};
+  --padding-xxl: #{$padding-xxl};
+  --padding-xxx-l: #{$padding-xxx-l};
+
+  --rad-xs: #{$rad-xs};
+  --rad-s: #{$rad-s};
+  --rad: #{$rad};
+  --rad-l: #{$rad-l};
+  --rad-xl: #{$rad-xl};
+
+  --trans-f: #{$trans-f};
+  --trans: #{$trans};
+  --trans-s: #{$trans-s};
+  --trans-xs: #{$trans-xs};
+  --trans-xxs: #{$trans-xxs};
+
+  --fs-xxs: #{$fs-xxs};
+  --fs-xs: #{$fs-xs};
+  --fs-s: #{$fs-s};
+  --fs: #{$fs};
+  --fs-l: #{$fs-l};
+  --fs-xl: #{$fs-xl};
+  --fs-xxl: #{$fs-xxl};
+
+  --fw-light: #{$fw-light};
+  --fw: #{$fw};
+  --fw-mid: #{$fw-mid};
+  --fw-bold: #{$fw-bold};
+
+  --lh-s: #{$lh-s};
+  --lh: #{$lh};
+  --lh-l: #{$lh-l};
+}
+
+/* --------------------------- shadow and textures -------------------------- */
+
+@mixin glass($color: $white, $opa: $opacity) {
+  background: rgba($color, $opa);
+  backdrop-filter: blur($blur-h);
+}
+
+@mixin glass-outline($color: $grey-light, $width: 1.5rem) {
+  outline: px($width) solid $color;
+}
+
+@mixin shadow {
+  box-shadow:
+    rgba($shadow-grey, $opacity-xh) 0 px(2rem) px(12rem) px(2rem),
+    rgba($white, $opacity-h) 0 0 px(8rem) px(4rem);
+}
+
+@mixin shadow-h {
+  box-shadow:
+    rgba($shadow-grey, $opacity-h) 0 px(2rem) px(16rem) px(2rem),
+    rgba($white, $opacity-h) 0 0 px(12rem) px(4rem);
+}
+
+/* ------------------------------- interaction ------------------------------ */
+
+.no-pointer-events {
+  pointer-events: none;
+}
+
+/* --------------------------------- others --------------------------------- */
+
+@mixin front {
+  z-index: 999999;
+}

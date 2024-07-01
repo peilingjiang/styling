@@ -1,47 +1,65 @@
-// rem to px
+/* version 20240630 */
+
+// turns rem to px
 @function px($rem) {
   @return calc($rem / 16);
 }
 
 /* ---------------------------------- color --------------------------------- */
 
-$black: #111;
-$grey-black: #333;
-$grey-dim: #666;
+$black: #0e0e0e;
+$dark: #333;
+$grey-dark: #666;
 $grey: #999;
-$grey-mid: #bbb;
-$grey-light: #d0d0d0;
+$grey-light: #bbb;
+$grey-lighter: #d0d0d0;
 $light: #ececec;
 $off-white: #f7f7f7;
 $white: #fff;
 
-$red: #d24545;
-$orange: #ee6e0e;
 $yellow: #ffb84c;
+$orange: #ee6e0e;
 $pink: #ff06b7;
-$purple: #57068c;
-$green: #13a600;
-$cine: #00aeaa;
 $blue: #008be8;
+$red: #d24545;
+$cine: #00aeaa;
+$green: #13a600;
+$purple: #57068c;
 
-$shadow-grey: #88a5bf;
+// weird colors
+$shadow-cold: #88a5bf;
 
 // opacity
 $opacity: 0.9;
 $opacity-h: 0.75;
-$opacity-xh: 0.5;
-$opacity-xxh: 0.25;
-$opacity-xxx-h: 0.05;
+$opacity-xh: 0.4;
+$opacity-xxh: 0.1;
+$opacity-slight: 0.05;
 
 // blur
+$blur-s: px(2rem);
 $blur: px(3rem);
 $blur-h: px(5rem);
 $blur-xh: px(7rem);
 
+// textures
+@mixin glass($color: $white) {
+  background-color: rgba($color, $opacity-xh);
+  backdrop-filter: blur($blur);
+}
+
+@mixin glass-outline($color: $grey-light, $width: px(1rem)) {
+  outline: $width solid $color;
+}
+
+@mixin glass-outline-h {
+  @include glass-outline($grey, px(2rem));
+}
+
 /* --------------------------------- layout --------------------------------- */
 
-$padding-xxx-s: 0.125rem;
-$padding-xxs: 0.25rem;
+$padding-xxx-s: 0.1rem;
+$padding-xxs: 0.375rem;
 $padding-xs: 0.5rem;
 $padding-s: 0.75rem;
 $padding: 1rem;
@@ -50,13 +68,22 @@ $padding-xl: 3rem;
 $padding-xxl: 4rem;
 $padding-xxx-l: 5rem;
 
-$rad-xs: 0.125rem;
+$rad-xs: 0.15rem;
 $rad-s: 0.25rem;
 $rad: 0.375rem;
 $rad-l: 0.5rem;
 $rad-xl: 1rem;
 
-/* ------------------------------- transition ------------------------------- */
+@mixin no-padding {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin z-index-top {
+  z-index: 999999 !important;
+}
+
+/* --------------------------------- motion --------------------------------- */
 
 $trans-f: 100ms;
 $trans: 300ms;
@@ -64,13 +91,22 @@ $trans-s: 700ms;
 $trans-xs: 1200ms;
 $trans-xxs: 3000ms;
 
+/* --------------------------------- shadow --------------------------------- */
+
+$shadow:
+  rgba($shadow-cold, $opacity-xh) 0 px(2rem) px(12rem) px(2rem),
+  rgba($white, $opacity-h) 0 0 px(8rem) px(4rem);
+$shadow-h:
+  rgba($shadow-cold, $opacity-h) 0 px(2rem) px(16rem) px(2rem),
+  rgba($white, $opacity-h) 0 0 px(12rem) px(4rem);
+
 /* ---------------------------------- font ---------------------------------- */
 
 $fs-xxs: 0.5rem;
 $fs-xs: 0.625rem;
-$fs-s: 0.875rem;
+$fs-s: 0.75rem;
 $fs: 1rem;
-$fs-l: 1.25rem;
+$fs-l: 1.2rem;
 $fs-xl: 2rem;
 $fs-xxl: 3rem;
 
@@ -79,41 +115,63 @@ $fw: 400;
 $fw-mid: 500;
 $fw-bold: 700;
 
-// line-height
-$lh-s: 1.3;
+$lh-s: 1.3; // line-height
 $lh: 1.5;
 $lh-l: 2;
+
+/* ------------------------------- interaction ------------------------------ */
+
+.cursor-drag {
+  cursor: grab;
+}
+
+.cursor-dragging {
+  cursor: grabbing;
+}
+
+@mixin cursor-drag {
+  cursor: grab;
+}
+
+@mixin cursor-dragging {
+  cursor: grabbing;
+}
+
+.no-pointer-events {
+  pointer-events: none;
+}
 
 /* -------------------------------------------------------------------------- */
 
 :root {
   --black: #{$black};
-  --grey-black: #{$grey-black};
-  --grey-dim: #{$grey-dim};
+  --dark: #{$dark};
+  --grey-dark: #{$grey-dark};
   --grey: #{$grey};
-  --grey-mid: #{$grey-mid};
   --grey-light: #{$grey-light};
+  --grey-lighter: #{$grey-lighter};
   --light: #{$light};
   --off-white: #{$off-white};
   --white: #{$white};
 
-  --red: #{$red};
-  --orange: #{$orange};
   --yellow: #{$yellow};
+  --orange: #{$orange};
   --pink: #{$pink};
-  --purple: #{$purple};
-  --green: #{$green};
-  --cine: #{$cine};
   --blue: #{$blue};
+  --red: #{$red};
+  --cine: #{$cine};
+  --green: #{$green};
+  --purple: #{$purple};
 
-  --shadow-grey: #{$shadow-grey};
+  --shadow-cold: #{$shadow-cold};
 
   --opacity: #{$opacity};
   --opacity-h: #{$opacity-h};
   --opacity-xh: #{$opacity-xh};
   --opacity-xxh: #{$opacity-xxh};
-  --opacity-xxx-h: #{$opacity-xxx-h};
+  --opacity-slight: #{$opacity-slight};
 
+  --blur-s: #{$blur-s};
   --blur: #{$blur};
   --blur-h: #{$blur-h};
   --blur-xh: #{$blur-xh};
@@ -156,39 +214,4 @@ $lh-l: 2;
   --lh-s: #{$lh-s};
   --lh: #{$lh};
   --lh-l: #{$lh-l};
-}
-
-/* --------------------------- shadow and textures -------------------------- */
-
-@mixin glass($color: $white, $opa: $opacity) {
-  background: rgba($color, $opa);
-  backdrop-filter: blur($blur-h);
-}
-
-@mixin glass-outline($color: $grey-light, $width: 1.5rem) {
-  outline: px($width) solid $color;
-}
-
-@mixin shadow {
-  box-shadow:
-    rgba($shadow-grey, $opacity-xh) 0 px(2rem) px(12rem) px(2rem),
-    rgba($white, $opacity-h) 0 0 px(8rem) px(4rem);
-}
-
-@mixin shadow-h {
-  box-shadow:
-    rgba($shadow-grey, $opacity-h) 0 px(2rem) px(16rem) px(2rem),
-    rgba($white, $opacity-h) 0 0 px(12rem) px(4rem);
-}
-
-/* ------------------------------- interaction ------------------------------ */
-
-.no-pointer-events {
-  pointer-events: none;
-}
-
-/* --------------------------------- others --------------------------------- */
-
-@mixin front {
-  z-index: 999999;
 }

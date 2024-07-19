@@ -11,11 +11,11 @@
     "prettier": "^3.3.3"
   },
   "lint-staged": {
-    "*.{scss,md}": "prettier --write"
+    "*.{scss,md,json}": "prettier --write"
   },
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write \"**/*.scss\""
+    "format": "prettier --write \"*.{scss,md,json}\""
   },
   "files": [
     "root.scss"

@@ -1,4 +1,4 @@
-/* version 20240630 */
+/* version 20240719 */
 
 // turns rem to px
 @function px($rem) {
@@ -32,15 +32,15 @@ $shadow-cold: #88a5bf;
 // opacity
 $opacity: 0.9;
 $opacity-h: 0.75;
-$opacity-xh: 0.4;
-$opacity-xxh: 0.1;
+$opacity-xh: 0.5;
+$opacity-xxh: 0.2;
 $opacity-xxx-h: 0.05;
 
 // blur
 $blur-s: px(2rem);
 $blur: px(3rem);
 $blur-h: px(5rem);
-$blur-xh: px(7rem);
+$blur-xh: px(9rem);
 
 /* --------------------------------- layout --------------------------------- */
 
@@ -166,12 +166,12 @@ $lh-l: 2;
 /* -------------------------------------------------------------------------- */
 
 // textures
-@mixin glass($color: $white) {
-  background-color: rgba($color, $opacity-xh);
-  backdrop-filter: blur($blur);
+@mixin glass($color: $white, $opacity: $opacity-xh) {
+  background-color: rgba($color, $opacity);
+  backdrop-filter: blur($blur-xh);
 }
 
-@mixin glass-outline($color: $grey-light, $width: px(1rem)) {
+@mixin glass-outline($color: $grey-lighter, $width: px(1rem)) {
   outline: $width solid $color;
 }
 

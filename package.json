@@ -1,6 +1,6 @@
 {
   "name": "@goodjpl/styling",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Handy shortcuts for styling",
   "main": "root.scss",
   "style": "root.scss",

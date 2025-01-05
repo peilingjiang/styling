@@ -1,8 +1,9 @@
-/* version 20240719 */
+/* version 20250105 */
+@use "sass:math";
 
 // turns rem to px
 @function px($rem) {
-  @return calc($rem / 16);
+  @return math.div($rem, 16);
 }
 
 /* ---------------------------------- color --------------------------------- */
@@ -26,9 +27,6 @@ $blue: #008be8;
 $cine: #00aeaa;
 $green: #13a600;
 
-// weird colors
-$shadow-cold: #88a5bf;
-
 // opacity
 $opacity: 0.9;
 $opacity-h: 0.75;
@@ -38,9 +36,9 @@ $opacity-xxx-h: 0.05;
 
 // blur
 $blur-s: px(2rem);
-$blur: px(3rem);
-$blur-h: px(5rem);
-$blur-xh: px(9rem);
+$blur: px(4rem);
+$blur-h: px(8rem);
+$blur-xh: px(12rem);
 
 /* --------------------------------- layout --------------------------------- */
 
@@ -90,85 +88,10 @@ $lh-l: 2;
 
 /* -------------------------------------------------------------------------- */
 
-:root {
-  --black: #{$black};
-  --dark: #{$dark};
-  --grey-dark: #{$grey-dark};
-  --grey: #{$grey};
-  --grey-light: #{$grey-light};
-  --grey-lighter: #{$grey-lighter};
-  --light: #{$light};
-  --off-white: #{$off-white};
-  --white: #{$white};
-
-  --yellow: #{$yellow};
-  --orange: #{$orange};
-  --pink: #{$pink};
-  --blue: #{$blue};
-  --red: #{$red};
-  --cine: #{$cine};
-  --green: #{$green};
-  --purple: #{$purple};
-
-  --shadow-cold: #{$shadow-cold};
-
-  --opacity: #{$opacity};
-  --opacity-h: #{$opacity-h};
-  --opacity-xh: #{$opacity-xh};
-  --opacity-xxh: #{$opacity-xxh};
-  --opacity-xxx-h: #{$opacity-xxx-h};
-
-  --blur-s: #{$blur-s};
-  --blur: #{$blur};
-  --blur-h: #{$blur-h};
-  --blur-xh: #{$blur-xh};
-
-  --padding-xxx-s: #{$padding-xxx-s};
-  --padding-xxs: #{$padding-xxs};
-  --padding-xs: #{$padding-xs};
-  --padding-s: #{$padding-s};
-  --padding: #{$padding};
-  --padding-l: #{$padding-l};
-  --padding-xl: #{$padding-xl};
-  --padding-xxl: #{$padding-xxl};
-  --padding-xxx-l: #{$padding-xxx-l};
-
-  --rad-xs: #{$rad-xs};
-  --rad-s: #{$rad-s};
-  --rad: #{$rad};
-  --rad-l: #{$rad-l};
-  --rad-xl: #{$rad-xl};
-
-  --trans-f: #{$trans-f};
-  --trans: #{$trans};
-  --trans-s: #{$trans-s};
-  --trans-xs: #{$trans-xs};
-  --trans-xxs: #{$trans-xxs};
-
-  --fs-xxs: #{$fs-xxs};
-  --fs-xs: #{$fs-xs};
-  --fs-s: #{$fs-s};
-  --fs: #{$fs};
-  --fs-l: #{$fs-l};
-  --fs-xl: #{$fs-xl};
-  --fs-xxl: #{$fs-xxl};
-
-  --fw-light: #{$fw-light};
-  --fw: #{$fw};
-  --fw-mid: #{$fw-mid};
-  --fw-bold: #{$fw-bold};
-
-  --lh-s: #{$lh-s};
-  --lh: #{$lh};
-  --lh-l: #{$lh-l};
-}
-
-/* -------------------------------------------------------------------------- */
-
 // textures
-@mixin glass($color: $white, $opacity: $opacity-xh) {
+@mixin glass($color: $white, $opacity: $opacity-h) {
   background-color: rgba($color, $opacity);
-  backdrop-filter: blur($blur-xh);
+  backdrop-filter: blur($blur);
 }
 
 @mixin glass-outline($color: $grey-lighter, $width: px(1rem)) {
@@ -180,12 +103,9 @@ $lh-l: 2;
 }
 
 // shadows
-$shadow:
-  rgba($shadow-cold, $opacity-xh) 0 px(2rem) px(12rem) px(2rem),
-  rgba($white, $opacity-h) 0 0 px(8rem) px(4rem);
-$shadow-h:
-  rgba($shadow-cold, $opacity-h) 0 px(2rem) px(16rem) px(2rem),
-  rgba($white, $opacity-h) 0 0 px(12rem) px(4rem);
+$shadow-s: rgba($black, $opacity-xxh) 0 0 px(8rem) px(-2rem);
+$shadow: rgba($black, $opacity-xxh) 0 0 px(14rem) px(-4rem);
+$shadow-h: rgba($black, $opacity-xh) 0 px(2rem) px(16rem) px(2rem);
 
 // layout
 @mixin no-padding {
@@ -197,7 +117,20 @@ $shadow-h:
   z-index: 999999 !important;
 }
 
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 // interaction
-.no-pointer-events {
+.no-pe {
   pointer-events: none;
+}
+
+.no-select {
+  user-select: none;
 }

@@ -6,9 +6,9 @@
   "style": "root.scss",
   "license": "MIT",
   "devDependencies": {
-    "husky": "^9.1.1",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.3"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2"
   },
   "lint-staged": {
     "*.{scss,md,json}": "prettier --write"
